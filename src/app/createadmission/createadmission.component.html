@@ -1,0 +1,89 @@
+<div class="container">
+  <h1 class="mt-4 text-center">Admission Form</h1>
+  <form [formGroup]="formValue" class="mat-form">
+    <mat-form-field appearance="fill" class="full-width mb-3">
+      <mat-label>Student Name</mat-label>
+      <input
+        matInput
+        placeholder="Enter your name"
+        formControlName="studentName"
+        required
+      />
+    </mat-form-field>
+
+    <div class="d-flex gap-3">
+      <mat-form-field appearance="fill" class="w-50">
+        <mat-label>Father's Name</mat-label>
+        <input
+          matInput
+          placeholder="Enter Father's name"
+          formControlName="fathersName"
+        />
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="w-50">
+        <mat-label>Mother's Name</mat-label>
+        <input
+          matInput
+          placeholder="Enter Mother's name"
+          formControlName="mothersName"
+        />
+      </mat-form-field>
+    </div>
+
+    <div class="d-flex gap-3">
+      <mat-form-field appearance="fill" class="w-50">
+        <mat-label>Date of Birth</mat-label>
+        <input matInput type="date" formControlName="dateOfBirth" />
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="w-50">
+        <mat-label>Phone</mat-label>
+        <input
+          matInput
+          type="number"
+          placeholder="Enter Phone number"
+          formControlName="phone"
+        />
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="w-50">
+        <mat-label>Email</mat-label>
+        <input
+          matInput
+          type="email"
+          placeholder="Enter Email"
+          formControlName="email"
+        />
+      </mat-form-field>
+    </div>
+
+    <mat-form-field appearance="fill" class="full-width mb-3">
+      <mat-label>Subject</mat-label>
+      <mat-select formControlName="subject">
+        <mat-option value="BBA">BBA</mat-option>
+        <mat-option value="CSE">CSE</mat-option>
+        <mat-option value="BSC">BSC</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <label class="form-label">Gender:</label>
+    <mat-radio-group formControlName="gender" class="mb-3">
+      <mat-radio-button value="male" class="mr-2">Male</mat-radio-button>
+      <mat-radio-button value="female">Female</mat-radio-button>
+    </mat-radio-group>
+
+    <mat-checkbox formControlName="privacyPolicyAccepted" class="mb-3">
+      Privacy policy accepted?
+    </mat-checkbox>
+
+    <button
+      mat-raised-button
+      color="primary"
+      class="full-width"
+      (click)="createAdmission()"
+    >
+      Submit
+    </button>
+  </form>
+</div>

@@ -1,0 +1,140 @@
+<div class="marginall">
+  <mat-sidenav-container class="example-container">
+    <mat-sidenav #sidenav mode="side" opened="true" class="example-sidenav">
+      <!-- Sidebar content (links, menu items etc.) -->
+      <mat-nav-list>
+        <mat-list-item>Dashboard</mat-list-item>
+        <mat-list-item>Admissions</mat-list-item>
+        <mat-list-item>Settings</mat-list-item>
+      </mat-nav-list>
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+      <!-- Main content (your AdmissionComponent content goes here) -->
+      <button mat-icon-button (click)="sidenav.toggle()">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <div class="responsive cardViews">
+        <h1>Admission Candidate List</h1>
+
+        <button mat-raised-button color="primary" (click)="downloadPDF()">
+          Download PDF
+        </button>
+        <button mat-raised-button color="accent" (click)="downloadXLS()">
+          Download Excel
+        </button>
+
+        <table
+          mat-table
+          [dataSource]="dataSource"
+          matSort
+          class="mat-elevation-z8"
+        >
+          <!-- Student Name Column -->
+          <ng-container matColumnDef="studentName">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+              Student Name
+            </th>
+            <td mat-cell *matCellDef="let row">{{ row.studentName }}</td>
+          </ng-container>
+
+          <!-- Father's Name Column -->
+          <ng-container matColumnDef="fathersName">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+              Father's Name
+            </th>
+            <td mat-cell *matCellDef="let row">{{ row.fathersName }}</td>
+          </ng-container>
+
+          <!-- Mother's Name Column -->
+          <ng-container matColumnDef="mothersName">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+              Mother's Name
+            </th>
+            <td mat-cell *matCellDef="let row">{{ row.mothersName }}</td>
+          </ng-container>
+
+          <!-- Date of Birth Column -->
+          <ng-container matColumnDef="dateOfBirth">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+              Date of Birth
+            </th>
+            <td mat-cell *matCellDef="let row">{{ row.dateOfBirth }}</td>
+          </ng-container>
+
+          <!-- Phone Column -->
+          <ng-container matColumnDef="phone">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Phone</th>
+            <td mat-cell *matCellDef="let row">{{ row.phone }}</td>
+          </ng-container>
+
+          <!-- Email Column -->
+          <ng-container matColumnDef="email">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Email</th>
+            <td mat-cell *matCellDef="let row">{{ row.email }}</td>
+          </ng-container>
+
+          <!-- Gender Column -->
+          <ng-container matColumnDef="gender">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Gender</th>
+            <td mat-cell *matCellDef="let row">{{ row.gender }}</td>
+          </ng-container>
+
+          <!-- Subject Column -->
+          <ng-container matColumnDef="subject">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Subject</th>
+            <td mat-cell *matCellDef="let row">{{ row.subject }}</td>
+          </ng-container>
+
+          <!-- Privacy Policy Column -->
+          <ng-container matColumnDef="privacyPolicyAccepted">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Policy</th>
+            <td mat-cell *matCellDef="let row">
+              {{ row.privacyPolicyAccepted ? "Accepted" : "Not Accepted" }}
+            </td>
+          </ng-container>
+
+          <!-- Header and Row Declarations -->
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+        </table>
+
+        <mat-paginator
+          [length]="dataSource.data.length"
+          [pageSize]="5"
+          [pageSizeOptions]="[5, 10, 20]"
+          showFirstLastButtons
+        ></mat-paginator>
+      </div>
+
+      <!-- card views -->
+
+      <div class="carResponsive">
+        <h1>Admission Candidate List</h1>
+
+        <!-- Loop through dataSource to display each row as a card -->
+        <div *ngFor="let admission of dataSource.data" class="cardViews">
+          <mat-card class="admission-card">
+            <mat-card-header>
+              <mat-card-title>{{ admission.studentName }}</mat-card-title>
+              <mat-card-subtitle>{{ admission.fathersName }}</mat-card-subtitle>
+            </mat-card-header>
+
+            <mat-card-content>
+              <p><strong>Mother's Name:</strong> {{ admission.mothersName }}</p>
+              <p><strong>Date of Birth:</strong> {{ admission.dateOfBirth }}</p>
+              <p><strong>Phone:</strong> {{ admission.phone }}</p>
+              <p><strong>Email:</strong> {{ admission.email }}</p>
+              <p><strong>Gender:</strong> {{ admission.gender }}</p>
+              <p><strong>Subject:</strong> {{ admission.subject }}</p>
+              <p>
+                <strong>Privacy Policy Accepted:</strong>
+                {{ admission.privacyPolicyAccepted ? "Yes" : "No" }}
+              </p>
+            </mat-card-content>
+          </mat-card>
+        </div>
+      </div>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>

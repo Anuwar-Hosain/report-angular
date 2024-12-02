@@ -1,0 +1,11 @@
+.example-card {
+  max-width: 400px;
+}
+
+.example-header-image {
+  background-image: url("https://st3.depositphotos.com/7646640/37548/v/450/depositphotos_375486194-stock-illustration-arab-muslim-man-icon-ramadan.jpg");
+  background-size: cover;
+}
+.margin {
+  margin: 100px;
+}
